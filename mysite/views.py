@@ -126,8 +126,7 @@ def editAddress(request, id):
 
 ####################################################################seller##############################
 
-def user(request):
-    
+def user(request):    
     product = Product.objects.all().order_by('-id')
     orderitem = OrderItem.objects.all().order_by('-id')
     paycart = Paycart.objects.all()

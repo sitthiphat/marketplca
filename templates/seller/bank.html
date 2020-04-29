@@ -1,23 +1,25 @@
 <div class="container">
-<div class="col-12">
-
-  <div class="row">
-    {% for i in bank %}
-            
-                <div class="col-4">
-                    <div class="card" style="width:400px">
-                    {% if i.bank.image_url.url %}<img class="card-img-top" src="{{i.bank.image_url.url}}" alt="Card image">{% endif %}
-                    <div class="card-body">
-                        <h4 class="card-title">{{i.bank.name}}</h4>
-                        <p class="card-text"> ชื่อบัญชี : {{i.namebank}}</p>
-                        <h5>เลขบัญชี : {{i.number}}</h5>
-                    </div>
-                    </div>
-                </div>  
-                
-    {% endfor %}
+<div class="row ">
+ {% for i in bank %}
+      <div class="col-sm-3"> 
     
-  </div>
+        <div class="card text-black bg-white mb-3" >
+        <div class="card-header"><h6>ข้อมูลธนาคาร</h6></div>
+            {% if i.bank.image_url %}<img class="card-img-top" style="height:200px;width:100%"src="{{i.bank.image_url.url}}" alt="Card image">{% endif %}
+            <div class="card-body">
+            <h4 class="card-title">{{i.bank.name}}</h4>
+            <h5 class="card-text">เลขที่บัญชี: {{i.number}}</h5>
+            <h5 class="card-title">ชื่อบัญชี: {{i.namebank}}</h5>
+            
+            </div>
+            </div> 
+      
+        
+      </div><!--col-->
+        {% endfor %}   
+    
+        
+    </div><!--row-->
 
                
-                </div>
+</div><!--con-->
