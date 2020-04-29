@@ -1,0 +1,60 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block bg %}
+
+{% endblock bg %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'table/table.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<div class="container">
+<br>
+<br>
+<h3>ออเดอร์ที่ {{order.id}}</h3>
+
+
+<table >
+                <thead >
+                    <tr >
+                      <th >#รหัส</th>
+                      <th >สินค้า</th>
+                      <th >จำนวน</th>
+                      <th>รวม</th>
+                      <th>การชำระเงิน</th>
+                      <th>ดูรายละเอียด</th>
+                    </tr>
+                        
+                </thead>
+                <tbody >
+                    {% for i in orderitem  %}
+                  <tr>
+                  
+                      <td data-column="รหัส : ">{{i.id}}</td>
+                      <td data-column="วันที่ : ">{{i.product.name}}</td>
+                      <td data-column="จำนวน : ">{{i.quantity}}</td>
+                      <td data-column=" รวมราคา"><h5 style="color:red">{{i.sub_total}}</h5></td>
+                      {% if i.status == True %}
+                        <td data-column=" สถานะ">
+                          <h5 style="color:green">ชำระแล้ว</h5>
+                        </td>
+                        <td data-column="ดูข้อมูล : ">
+                          <a href="" title="ดูข้อมูล" > <i class="fas fa-folder-open"></i></a>
+                        </td>
+                      {% else %}
+                        <td data-column=" สถานะ">
+                          <a href="{% url 'cart:paymentcart' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm "> <i class="material-icons"></i>จ่ายเงิน </a>
+                        </td>
+                        <td data-column="จัดการ : ">
+                          <i class="fas fa-minus-circle"></i>
+                        </td>
+                      {% endif %}
+                  </tr>{% endfor %}
+                </tbody>
+            </table>
+            
+            
+            </div>
+            {% endblock content %}
+            

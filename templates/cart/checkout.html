@@ -1,0 +1,121 @@
+{% extends "master.html" %}
+
+{% block title %}checkout{% endblock %}
+{% block bg %}
+{% endblock bg %}
+
+{% block content %}
+<br><br>
+
+
+       
+
+    <!-- shopping-cart-area start -->
+    
+<div class="container">
+   
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">ตะกร้าของคุณ</span>
+                <span class="badge badge-secondary badge-pill"></span>
+            </h4>
+            <ul class="list-group mb-3 sticky-top">
+            {% for i in cart  %}
+            
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div class="col-sm-2 hidden-xs"><img src="{{i.product.image_url.url}}" alt="..." class="img-responsive"/></div>
+                    <div>
+                        <h5 class="my-0">{{i.product.name}}</h5>
+                        
+                    </div>
+                    {{i.product.price}} x {{i.quantity}}
+                    <span class="text-muted" >{{i.sub_total}}</span>
+                </li>
+                
+            {% endfor %}
+            </ul>
+            <div class="row">
+              <div class="col-9">รวมทั้งหมด</div>
+              <div class="col-3"><h5>{{total}}</h5></div>
+          </div>
+            
+            <form action="{% url 'cart:payment' %}" method="GET">
+				          
+				        <br><hr>
+                {% if address %} 
+				        <input type="submit" class="btn btn-primary" value="ยืนยันการสั่งซื้อ">
+                {% else %}
+                <button type="button" class="btn btn-primary" disabled>ยืนยันการสั่งซื้อ</button>
+                {% endif %}
+		      	</form>
+            
+        </div>
+        <div class="col-md-8 order-md-1">
+
+
+{% if address %}      
+{% for i in address %}
+
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-10">
+       <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">ที่อยู่ของคุณ</span>
+                
+            </h4>
+      <textarea id="subject" name="subject" style="height:50px">{{i.number}}</textarea>
+    </div>
+    <div class="form-group col-md-1"></div>
+    
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <h5 for="inputEmail4">ตำบล</h5>
+      <input type="text"   value="{{i.tumbon}}">
+    </div>
+    <div class="form-group col-md-1"></div>
+    <div class="form-group col-md-5">
+      <h5 for="inputPassword4">อำเภอ</h5>
+      <input type="text"   value="{{i.city}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <h5 for="inputEmail4">จังหวัด</h5>
+      <input type="text"   value="{{i.country}}">
+    </div>
+    <div class="form-group col-md-1"></div>
+    <div class="form-group col-md-5">
+      <h5 for="inputPassword4">รหัสไปรษณีย์</h5>
+      <input type="text"value="{{i.zipcode}}" >
+    </div>
+  </div>
+  
+  
+  <a href="{% url 'editaddress' i.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูลนี้</button></a>
+  <hr>
+</form>
+    
+    
+{% endfor %}
+{% else %}
+<h4>กรุณาเพิ่มที่อยู่ก่อนทำการยืนยันการสั่งซื้อ</h4>
+<a href=""><button class="btn btn-primary">เพิ่มที่อยู่ของท่าน <i class='fas fa-house-user'></i></button></a>
+{% endif %}  
+        </div>
+    </div>
+    
+</div>
+  <br>
+    <!-- shopping-cart-area end -->
+
+
+
+       
+
+
+{% endblock %}
+
+

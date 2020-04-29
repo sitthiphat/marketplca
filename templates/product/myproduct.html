@@ -1,0 +1,95 @@
+
+  <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">สินค้าของฉัน</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Out of Stcok</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <table >
+                <thead >
+                    <tr >
+                      <th >#รหัส</th>
+                      <th >ชื่อ</th>
+                      <th >ราคา(บาท)</th>
+                      <th>รูป</th>
+                      <th>จัดการ</th>
+                    </tr>
+                        
+                </thead>
+                <tbody >
+                    {% for i in product  %}
+                  <tr>
+                  {% if i.p_seller == user.seller %}
+                    {% if i.status == True %}
+                      <td data-column="รหัส : ">{{ forloop.counter }}</td>
+                      <td data-column="ชื่อ : ">{{i.name}}</td>
+                      <td data-column="ราคา : "><h5 style="color:red">{{i.price}}</h5></td>
+                      {% if i.image_url %}
+                      <td><img src="{{ i.image_url.url }}" alt="" style="height:60px" ></td>
+                      {% endif %}
+                      <td data-column="จัดการ : ">
+                          <a href="{% url 'product:edit_product' i.id %}" title="แก้ไข" class="btn btn-warning btn-sm "> <i class="fa fa-pencil"></i> </a>
+                          <a href="{% url 'product:delete_product' i.id %}" title="ลบ" class="btn btn-danger btn-sm "> <i class="fa fa-trash"></i> </a>
+                          <a href="{% url 'product:productdetail' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm "> <i class="glyphicon glyphicon-eye-open"></i> </a>     
+                      </td>
+                      {% endif %}
+                  {% endif %}
+                  </tr>
+                  {% endfor %}
+                    
+                </tbody>
+            </table>
+  
+  
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <table >
+                <thead >
+                    <tr >
+                      <th >#รหัส</th>
+                      <th >ชื่อ</th>
+                      <th >ราคา(บาท)</th>
+                      <th>รูป</th>
+                      <th>จัดการ</th>
+                    </tr>
+                        
+                </thead>
+                <tbody >
+                    {% for i in product  %}
+                    {% if i.p_seller == user.seller %}
+                    {% if i.status == False %}
+                  <tr>
+                  
+                      <td data-column="รหัส : ">{{ forloop.counter }}</td>
+                      <td data-column="ชื่อ : ">{{i.name}}</td>
+                      <td data-column="ราคา : "><h5 style="color:red">{{i.price}}</h5></td>
+                      {% if i.image_url %}
+                      <td><img src="{{ i.image_url.url }}" alt="" style="height:60px" ></td>
+                      {% endif %}
+                      <td data-column="จัดการ : ">
+                          <a href="{% url 'product:edit_product' i.id %}" title="แก้ไข" class="btn btn-warning btn-sm "> <i class="fa fa-pencil"></i> </a>
+                          <a href="{% url 'product:delete_product' i.id %}" title="ลบ" class="btn btn-danger btn-sm "> <i class="fa fa-trash"></i> </a>
+                          <a href="{% url 'product:productdetail' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm "> <i class="glyphicon glyphicon-eye-open"></i> </a>     
+                      </td>
+                      
+                  </tr>
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                    
+                </tbody>
+            </table>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
+  
+  
+ 
+
+  
+  
+ 
+ 

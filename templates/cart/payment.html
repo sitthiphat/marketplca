@@ -1,0 +1,57 @@
+
+
+{% extends 'master.html' %}
+{% load static %}
+{% block bg %}
+{% endblock bg %}
+{% block content %}
+<br>
+<div class="container">
+
+<br>
+<hr>
+<div class="alert alert-info">
+<center>
+  <h4>กรุณาโอนเงินตามบัญชีข้างต้น และทำการแนบสลิปเพื่อยืนยันการชำระเงิน</h4>
+</center>
+</div>
+
+
+
+  <div class="row">
+        {% for i in sellerbank %}
+            {% if i.user.id == cartitem.product.p_seller.id %}
+        <div class="col-md-6 col-lg-4 g-mb-30">
+          <article class="u-shadow-v18 g-bg-white text-center rounded g-px-20 g-py-40 g-mb-5">
+            {% if i.bank.image_url.url %}<img class="d-inline-block img-fluid mb-4" src="{{i.bank.image_url.url}}" alt="Image Description">{% endif %}
+            <h4 class="h5 g-color-black g-font-weight-600 g-mb-10">{{i.bank.name}}</h4>
+            <p>ชื่อบัญชี : {{i.namebank}}</p>
+            <span class="d-block g-color-primary g-font-size-16"><h5>เลขบัญชี : {{i.number}}</h5></span>
+          </article>
+        </div>
+        {% endif %}
+        {% endfor %}
+  </div>
+  <br>
+  <h4>{{cartitem.product.name}}</h4> 
+  ยอดรวม: {{cartitem.sub_total}}
+  <hr>
+  <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type='file' name="img" />
+       
+        <br>
+
+        <button type="submit" class="btn btn-primary" name="Submit"> บันทึกข้อมูล </button>
+    </form> 
+
+
+
+</div><!-- container-->
+
+
+ {% endblock content %}
+ <br><br>
+ {% block footer %}
+  <br>
+ {% endblock footer %}

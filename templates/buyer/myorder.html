@@ -1,0 +1,97 @@
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">ชำระเงินแล้ว</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">ยังไม่ชำระเงิน</a>
+  </li>
+ 
+</ul>  
+ {% if order_items %}
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <table >
+                <thead >
+                    <tr >
+                      <th >#รหัส</th>
+                      <th >วันที่</th>
+                      <th >สถานะการชำระเงิน</th>
+                      <th>รวมราคา</th>
+                      <th>ดูรายละเอียด</th>
+                    </tr>
+                        
+                </thead>
+                <tbody >
+                    {% for i in order_items  %}
+                    {% if i.status == True %}
+                  <tr>
+                  
+                      <td data-column="รหัส : ">{{i.id}}</td>
+                      <td data-column="วันที่ : ">{{i.date|date:"d F, Y"}}</td>
+                      
+                      <td data-column="สถานะการชำระเงิน : ">ชำระแล้ว</td>
+                     
+                      <td data-column=" รวมราคา"><h5 style="color:red">{{i.total}}</h5></td>
+                      <td data-column="จัดการ : ">
+                          
+                    
+                          <a href="{% url 'cart:orderview' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm ">ดูข้อมูล <i class="material-icons"></i> </a>
+                          <a href="{% url 'cart:bill' i.id %}" target="_blank" title="ดูข้อมูล" class="btn btn-info btn-sm ">พิมพ์ <i class="fa fa-print"></i> </a>
+
+                          
+                      </td>
+                      
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+           
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+  <table >
+                <thead >
+                    <tr >
+                      <th >#รหัส</th>
+                      <th >วันที่</th>
+                      <th >สถานะการชำระเงิน</th>
+                      <th>รวมราคา</th>
+                      <th>ดูรายละเอียด</th>
+                    </tr>
+                        
+                </thead>
+                <tbody >
+                    {% for i in order_items  %}
+                    {% if i.status == False %}
+                  <tr>
+                  
+                      <td data-column="รหัส : ">{{i.id}}</td>
+                      <td data-column="วันที่ : ">{{i.date|date:"d F, Y"}}</td>
+                      
+                      
+                      <td data-column="สถานะการชำระเงิน : ">ยังชำระไม่ครบ</td>
+                
+
+                      <td data-column=" รวมราคา"><h5 style="color:red">{{i.total}}</h5></td>
+                      <td data-column="จัดการ : ">
+                          
+                         
+                         
+                         
+                           <a href="{% url 'cart:orderview' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm ">ชำระเงิน <i class="material-icons"></i> </a>
+                          <a href="{% url 'cart:bill' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm " disabled>พิมพ์ <i class="fa fa-print"></i> </a>
+                               
+                      </td>
+                      
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+
+</div>
+</div>
+ 
+
+ {% endif %}
+ 

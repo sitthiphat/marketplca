@@ -1,0 +1,84 @@
+{% extends 'master.html' %}
+{% block bg %}
+{% endblock bg %}
+{% block content %}
+<div class="container">
+<br>
+<br>
+ข้อมูลการชำระเงิน
+<div class="row ">
+    <div class="col-sm-4"> 
+        
+        <div class="card text-black bg-white mb-3" >
+        <div class="card-header"><h4>หลักฐานการชำระเงิน</h4></div>
+            {% if paycart.image_url %}<img class="card-img-top" style="height:400px;width:100%"src="{{paycart.image_url.url}}" alt="Card image">{% endif %}
+            <div class="card-body">
+            <h4 class="card-title">{{paycart.cartitem.product.name}}</h4>
+            <p class="card-text">จำนวน {{paycart.cartitem.quantity}} ชิ้น</p>
+            <h5 class="card-title">ราคารวม {{paycart.cartitem.sub_total}} บาท</h5>
+            <h5 class="card-title" style="color:green">ชำระเงินแล้ว</h5>
+            </div>
+            </div>    
+        </div><!--col-->
+    
+        <div class="col-sm-4"> 
+         
+            <div class="card text-black bg-light mb-3" style="max-width: 40rem;">
+            <div class="card-header"><h4>ข้อมูลผู้ซื้อ</h4></div>
+            <div class="card-body">
+                <h5 class="card-title">ชื่อ: 
+                <strong>{{paycart.cartitem.order.user.first_name}} </strong>
+                &nbsp;&nbsp;<strong>{{paycart.cartitem.order.user.last_name}}</strong></h5>
+                {% for i in address %}
+                {% if i.user.id == paycart.cartitem.order.user.id %}
+                <div>ที่อยู่:<strong>{{i.number}}</strong></div>
+                <div>ตำบล:<strong>{{i.tumbon}} </strong>&nbsp; อำเภอ:<strong>{{i.city}}</strong>&nbsp; จังหวัด:<strong> {{i.country}} {{i.zipcode}}</strong></div>
+                <div>โทรศัพท์ :<strong>0{{paycart.cartitem.order.user.buyer.phone}}</strong></div>
+                <div></div>
+                
+                {% endif %}
+                {% endfor %}
+            </div>
+            </div>      
+        </div><!--col-->
+
+
+        <div class="col-sm-4"> 
+        <div class="card text-black bg-white mb-3" >
+            <div class="card-header"><h4>หลักฐานการจัดส่งสินค้า</h4></div>
+            <form action="{% url 'cart:sellerpayment' paycart.id %}"enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {% if paycart.simage_url %}<img class="card-img-top" style="height:400px;width:100%"src="{{paycart.simage_url.url}}" alt="Card image">
+            {% else %}
+            <div class="card-body">
+            <h4 class="card-title">ผู้ขายยังไม่ดำเนินการจัดส่งสินค้า</h4><hr>
+            </div>
+            อัพโหลดหลักฐานการจัดส่ง
+             <img class="img-responsive" id="blah" src="http://placehold.it/180" alt="your image" style="height:300px"/>
+            <input type='file' name="img" onchange="readURL(this);" /></center> 
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+            {% endif %}
+            
+            </form>
+            
+            
+           
+        
+        </div><!--col-->
+    </div><!--row-->
+</div><!--con-->
+<script>
+function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }</script>
+
+{% endblock content %}

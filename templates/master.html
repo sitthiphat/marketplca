@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    
+    <title>{% block title %}My site{% endblock %}</title>
+    <head>
+
+
+    
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon1.png' %}">
+       <!-- css ของ login  -->
+       
+        
+		<!-- all css here -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slinky.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+        
+        <link rel="stylesheet" href="{% static 'css/bundle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+       
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+      
+    
+    </head>
+</head>
+
+<body class="Site">
+    
+        {% block nav %}
+        
+        <div class="wrapper">
+           
+            <header class="pl-155 pr-155 intelligent-header">
+                <div class="header-area header-area-2">
+                    <div class="container-fluid p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-3 col-md-6 col-6">
+                                <div class="logo">
+                                
+                                <a href="{% url 'index' %}"><img src="{%static 'img/logo/logo5.png' %}" width="65%"alt="" /></a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-6 menu-none-block menu-center">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li><a href="{% url 'index' %}">home</a></li>
+                                        
+                                        <li><a href="{% url 'product:shop' %}">shop</a></li>
+                                       
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-6">
+                        
+                            <div class="header-search-cart">
+                                <div class="header-search common-style">
+                                {% if user.is_authenticated %}
+                                {% if not cartitem %}
+                                {% else %}
+                                <a href="{% url 'cart:cartdetail' %}"> <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</button></a>
+                                    {% endif %}
+                                    {% endif %}
+                                    <button class="sidebar-trigger-search">
+                                        <span class="ion-ios-search-strong"></span>
+                                    </button>
+                                  
+            
+        
+     
+                                </div>
+                                
+                                <div class="header-sidebar common-style">
+                                    <button class="header-navbar-active">
+                                        <span class="ion-navicon"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-menu-area d-md-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
+                            <div class="mobile-menu">
+                                <nav id="mobile-menu-active">
+                                    <ul class="menu-overflow">
+                                        <li><a href="#">HOME</a>
+                                           
+                                        </li>
+                                        <li><a href="#">pages</a>
+                                            <ul>
+                                               
+                                                <li><a href="{% url 'cart:cartdetail' %}">cart</a></li>
+                                                
+                                                
+                                               
+                                                <li><a href="logout">logout</a></li>
+                                                
+                                                <li><a href="{% url 'signin' %}">login</a></li>
+                                                <li><a href="{% url 'signup' %}">register</a></li>
+                                                
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">shop</a>
+                                            <ul>
+                                                <li><a href="shop-grid-view-3-col.html">grid 3 column</a></li>
+                                                <li><a href="shop-grid-view-5-col.html">grid 5 column</a></li>
+                                                 
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">BLOG</a>
+                                            <ul>
+                                                <li><a href="blog.html">blog </a></li>
+                                                <li><a href="blog-2-col.html">blog 2 column</a></li>
+                                                <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>
+                                                <li><a href="blog-details.html">blog details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html"> Contact  </a></li>
+                                    </ul>
+                                </nav>							
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+    </div>
+{% endblock %}
+    {% block header %}
+    
+    <div class="wrapper">
+        <!-- Newsletter Popup Start -->
+        
+        <!-- Newsletter Popup End -->
+       
+        <div class="header-space"></div>
+        <!-- header end -->
+        <!-- sidebar-cart start -->
+        
+        <!-- main-search start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><span class="ion-android-close"></span></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form>
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
+                        <button>
+                            <i class="ion-ios-search-strong"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- main-search start -->
+        <div class="cur-lang-acc-active">
+            <div class="wrap-sidebar">
+                <div class="sidebar-nav-icon">
+                    <button class="op-sidebar-close"><span class="ion-android-close"></span></button>
+                </div>
+                
+                    <div class="single-currency-language-account">
+                    
+                        
+                    <div class="single-currency-language-account">
+                        <div class="cur-lang-acc-title">
+                        {% if user.is_authenticated %}
+                        
+                            <h4>{{user.first_name}}</h4> 
+                        </div>
+                        <div class="cur-lang-acc-dropdown">
+                            <ul>
+                                <li><a href="{% url 'user' %}">ขาย</a></li>
+                                <li><a href="{% url 'buyer' %}">แก้ไขข้อมูลส่วนตัว</a></li>
+                                
+                                
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% if user.is_superuser %}
+                                <li><a href="">Dashboard</a></li>
+                                
+                                {% else %}
+
+                               
+                                {% endif %}
+                            {% else %}
+
+                    
+                                <li><a href="{% url 'signin' %}">เข้าสู่ระบบ</a></li>
+                                <li><a href="{% url 'signup' %}">สมัครสมาชิก</a></li>
+                            {% endif %}
+                            </ul>
+                     
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}        
+   
+    {% block bg %}<div class="breadcrumb-area pt-205 pb-50 bg-img" style="background-image: url({%static 'img/bg/หน้าปก.png' %})"></div>{% endblock %}
+        
+    </div>
+<main class="Site-content">
+        {% block content %}
+        
+        
+        
+        {% endblock %}
+    </main>
+   
+
+        {% block footer %}
+       <!-- Footer -->
+<footer class="page-footer font-small teal pt-4">
+
+  <!-- Footer Text -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-sm-4"id="bottom-footer">
+
+        <!-- Content -->
+         <div id="pad1">
+        <h6 class="text-uppercase font-weight">
+        <a href="{% url 'index' %}"><img src="{%static 'img/logo/logo5.png' %}" width="30%"alt="" /></a></h6>
+        <h6>เว็บไซต์ StyleChic (เว็บไซต์สำหรับซื้อ-ขายเสื้อกีฬามือสอง)
+        </div>
+      </div>
+      <!-- Grid column -->
+
+      
+
+      <!-- Grid column -->
+      <div class="col-sm-4"id="bottom-footer">
+
+        <!-- Content -->   
+        <h5 class="text-uppercase font-weight-bold">เกี่ยวกับเรา</h5>
+        <p>เว็บไซต์สำหรับซื้อ-ขายเสื้อกีฬามือสอง</p>
+         <a href="">วิธีการใช้งาน</a>
+         <br><br>
+                
+      </div>
+      <!-- Grid column -->
+  
+        <div class="col-sm-4"id="bottom-footer">
+        <div id="pad">
+        <h5 class="text-uppercase font-weight-bold">ติดต่อเรา</h5>
+        <a href=""><img src="{%static 'img/logo/facebook1.png' %}" width="3%"alt="" /></a> Jame Sithiphat<br>
+        <a href=""><img src="{%static 'img/logo/facebook1.png' %}" width="3%"alt="" /></a> Seniz Chanikarn
+        <br></div>
+        </div><!--end col-->
+        
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Text -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3"id="bottom-footers">สงวนลิขสิทธิ์ © 2563: 
+    <a href="https://mdbootstrap.com/">โครงงานระบบสารสนเทศ</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+       
+        
+        {% endblock %}
+    
+    
+   
+
+    <script src="{% static 'js/vendor/jquery-1.12.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/slinky.min.js' %}"></script>
+    <script src="{% static 'js/ajax-mail.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    
+    <script type="text/javascript">
+
+    
+        // grab an element
+        var myElement = document.querySelector(".intelligent-header");
+        // construct an instance of Headroom, passing the element
+        var headroom  = new Headroom(myElement);
+        // initialise
+        headroom.init(); 
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

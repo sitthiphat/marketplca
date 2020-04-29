@@ -1,0 +1,30 @@
+
+
+{% for i in address %}
+{% if i.user.id == user.id %}
+<a href="{% url 'editaddress' i.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูลที่อยู่</button></a><br>
+<div class="cardtext-black bg-ligh mb-3" style="max-width: 40rem;">
+            
+            <div class="card-body">
+               
+               
+                
+                <h5>
+                <div>ที่อยู่: <strong>{{i.number}}</strong></div><br>
+                <div>ตำบล: <strong>{{i.tumbon}} </strong></div><br> 
+                <div>อำเภอ: <strong>{{i.city}}</strong></div><br> 
+                <div>จังหวัด: <strong> {{i.country}} {{i.zipcode}}</strong></div><br>
+                <div>โทรศัพท์: <strong>0{{i.user.buyer.phone}}</strong></div>
+                <div></div>
+                </h5>
+               
+            </div>
+            </div>
+            {% else %}
+<a href="{% url 'addaddress' %}"><button type="button" class="btn btn-primary">เพิ่มข้อมูลที่อยู่</button></a><br>
+                {% endif %}
+                {% endfor %}
+    
+
+
+

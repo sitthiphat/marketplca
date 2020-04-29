@@ -1,0 +1,88 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}sellerprofile{% endblock %}
+
+{% block content %}
+
+        <div class="breadcrumb-content">
+
+ {% block bg %}
+ {% endblock bg %}      
+ <br><br><br><br>
+<div class="container">
+
+    <div class="row">
+    
+    <div class="col-sm-4"><center>{% if sellerprofile.image_url %}
+      <img  src="{{sellerprofile.image_url.url}}" style="height:150px" >
+      {% else %}
+      <img class="img-circle img-responsive" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" style="height:120px" >
+      {% endif %}
+      <ul>
+      <li><h4>ชื่อร้าน : </h4></li>
+      <li><h3 style="color:blue">{{sellerprofile.name}}</h3></li>
+      </ul>
+    </center></div>
+    <div class="col-sm-8">
+      <ul>
+      <li>Email : </li>
+      <li><h5 style="color:blue">{{sellerprofile.email}}</h5></li>
+      </ul>
+      <ul>
+        <li>ที่อยู่ : </li>
+        <li><h5 style="color:blue">{{sellerprofile.address}}</h5></li>
+    </ul>
+    </div>
+
+     
+      <!-- /.col-lg-3 -->
+</div>
+      
+
+       <br>
+    <hr>
+    <h4 style="color:red">สินค้าของทางร้าน<h4><br>
+       <div class="row">
+       {% for i in product %}
+
+          <div class="col-lg-2 col-md-6 mb-2">
+            <div class="card h-100" >
+            {% if i.image_url %}
+              <a href="{% url 'product:productdetail' i.id %}"><img class="card-img-top" src="{{ i.image_url.url }}" style="width:;height:170px;"alt="Responsive image" ></a>
+              {% endif %}<div class="card-body">
+              
+              </p>
+                <h5 class="card-title"> 
+                  <a href="{% url 'product:productdetail' i.id %}">{{i.name}}</a>
+                </h5>
+                
+                <h4 style="color:red" class="card-text">{{i.price}}</h4>
+              </div>
+              <button type="submit" class="btn btn-primary"  name="addcart"><span style="margin-right:5px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to Cart </button>
+            </div>
+          </div>
+          
+          
+
+        {% endfor %}</div>
+        <!-- /.row -->
+
+  
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+
+   
+
+
+       <br><br><br><br>
+
+
+{% endblock %}
+
+
+ 

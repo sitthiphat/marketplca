@@ -1,0 +1,66 @@
+{% extends "master.html" %}
+
+{% block title %}sign up{% endblock %}
+{% block bg %}{% endblock %}
+{% block content %}
+
+
+
+</style><link rel="stylesheet" href="static/assets/css1/login.css">
+
+<div class="container px-4 py-5 mx-auto">
+{% if user.is_authenticated %}
+<h1>คุณได้เข้าสู่ระบบแล้ว</h1>
+{% else %}
+{% for messages in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"> {{ messages }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+                {% endfor %}
+  <div class="card card0">
+      <div class="d-flex flex-lg-row flex-column-reverse">
+          <div class="card card1">
+              <form action="signup" method="POST">
+              {% csrf_token %}
+              <div class="row justify-content-center my-auto">
+                  <div class="col-lg-8 my-5">
+                      <h3 class="mb-3">สมัครสมาชิก</h3> 
+                      <div class="form-group mt-5"> <input type="text" name="firstname" id="firstname" class="form-control" required> 
+                        <label class="form-control-placeholder"for="firstname" >ชื่อ</label> 
+                      </div>
+                      <div class="form-group mt-5"> <input type="text"  name ="lastname"class="form-control" required> 
+                        <label class="form-control-placeholder" >นามสกุล</label> 
+                      </div>
+                      <div class="form-group mt-5"> <input type="email"  name="email" class="form-control" required>
+                       <label class="form-control-placeholder" >Email</label> 
+                      </div>
+                      <div class="form-group mt-5"> <input type="text" name="username" class="form-control" required> 
+                      <label class="form-control-placeholder" >Username</label> 
+                      </div>
+                      
+                      <div class="form-group mt-4"> <input type="password" name="password" class="form-control" required> 
+                      <label class="form-control-placeholder" >Password</label> 
+                      </div>
+                      <div class="form-group mt-4"> <input type="password" name="confirmpassword" class="form-control" required> 
+                      <label class="form-control-placeholder" >ConfirmPassword</label> </div>
+                      <div>
+                      <button type="submit" class="btn btn-primary" name="Signup">ยืนยัน</button>
+                     </div>
+                      </form>
+                  </div>
+              </div>
+
+              <div class="bottom text-center mb-3"> <a href="{% url 'signin' %}" class="sm-text mx-auto mb-3"><button type="button" class="btn btn-outline-primary">มีรหัสแล้ว</button></a> </div>
+          </div>
+          <div class="card card2"> <img id="image" src="static/signin.png"> </div>
+      </div>
+  </div>
+</div> 
+ {% endif %}
+{% endblock %}
+
+
+{% block footer %}
+{% endblock footer %}

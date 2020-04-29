@@ -1,0 +1,135 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}ร้านค้า : {{user.seller.name}}{% endblock %}
+
+{% block content %}
+
+<!--<link rel="stylesheet" href="{% static 'table/tablemiyazaki.css' %}">-->
+<link rel="stylesheet" href="{% static 'table/table.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+<br>
+{% if user.is_authenticated %}
+<div class="container-fluid">
+  <div class="container">
+      
+      <div class="col-md-3 pr-md-0 bg-light">
+          <nav class="navbar navbar-expand-md navbar-light flex-row flex-md-column align-items-start px-1">
+              
+              <a class="navbar-toggler" href="#" data-toggle="collapse" data-target="#navbarToggle">
+                  <span class="navbar-toggler-icon"></span>
+              </a>
+              <div class="collapse navbar-collapse ml-md-n2" id="navbarToggle">
+                  <div class="navbar-nav ml-auto flex-column">
+                    
+                   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                   <center>
+                      {% if user.seller.image_url %}
+                      <img class="img-circle img-responsive" src="{{ user.seller.image_url.url }}" alt="" style="height:150px" >
+                      {% else %}
+                      <img class="img-circle img-responsive" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" style="height:120px" >
+                      {% endif %}
+                    </center>
+                      <br>
+                          
+                          <h5 style="color:red">{{user.seller.name}}</h5>
+                          
+                          
+                      <br>
+                  <!-- ปุ่มกด -->
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="">ข้อมูลร้านค้า</a>
+                        <a class="nav-link" id="v-pills-seller-tab" data-toggle="pill" href="#v-pills-seller" role="tab" aria-controls="v-pills-seller" aria-selected="false">ข้อมูลสินค้า</a>
+                        <a class="nav-link" id="v-pills-bank-tab" data-toggle="pill" href="#v-pills-bank" role="tab" aria-controls="v-pills-bank" aria-selected="false">ข้อมูลคำสั่งซื้อ</a>
+                        <a class="nav-link" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order" role="tab" aria-controls="v-pills-order" aria-selected="false">บัญชีธนาคาร</a>
+                  
+                    </div>
+                  </div>
+              </div>
+          </nav>
+      </div><br>
+
+      <!--  ความกว้าง ของ reponsive-->
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+  
+  
+          {% if messages %}
+            
+                {% for message in messages %}
+               <div class="alert alert-success alert-dismissible fade show" role="alert"> {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+                {% endfor %}
+            
+        {% endif %}
+        <!-- เริ่ม tap หนึง-->
+          
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" >
+            
+              
+            <legend>ข้อมูลร้านค้า</legend>
+            <a href="{% url 'adduser' user.seller.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูล</button></a><br>
+            <br>
+                {% include 'seller/profile.html' %}
+           </div>
+
+           <!--จบหนึ่ง--> 
+
+          <!-- เริ่ม tap สอง  -->
+          <div class="tab-pane fade" id="v-pills-seller" role="tabpanel" aria-labelledby="v-pills-seller-tab">
+          <legend>สินค้าของฉัน</legend>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <a href="{% url 'product:addproduct' %}"><button type="button" class="btn btn-primary">เพิ่มข้อมูลสินค้า</button></a><br><br>
+                  </div>
+                  <div class="col-sm-6">
+                  
+                  </div>
+                </div>
+                {% include 'product/myproduct.html' %}
+
+              
+
+          </div><!--- จบสอง -->
+          <!-- Bank -->
+
+          <div class="tab-pane fade" id="v-pills-bank" role="tabpanel" aria-labelledby="v-pills-bank-tab">
+          <legend>ข้อมูลคำสั่งซื้อ</legend>
+            {% include 'seller/sellerorder.html' %}
+
+              
+            
+        
+          </div><!--- Baknk -->
+
+          <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
+
+              <legend>บัญชีธนาคาร</legend>
+              
+               {% include 'seller/bank.html' %}
+              
+
+          </div><!--- จบสาม -->
+
+
+
+
+
+         
+      </div>
+    </div>  
+</div>
+</div>
+
+{% else %}
+<div class="container">
+<h1> กรุณาเข้าสู่ระบบ</h1> <br>
+<a class="btn btn-primary" href="{% url 'signin' %}">เข้าสู่ระบบ</a>
+</div>
+{% endif %}
+{% endblock %}<br>
+

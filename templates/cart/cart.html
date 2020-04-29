@@ -1,0 +1,103 @@
+{% extends "master.html" %}
+
+{% block title %}shoppingcart{% endblock %}
+{% load static %}
+{% block content %}
+{% block bg %}
+{% endblock bg %}
+
+		
+	
+
+        
+        <!-- Include the above in your HEAD tag -->
+        <!--- boostrap ของ shopcart -->
+        <link rel="stylesheet" href="{% static 'assets/css1/cart2.css' %}">
+
+        
+        <!-- Include the above in your HEAD tag -->
+        
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container"><br>
+        {% if messages %}
+            
+                {% for message in messages %}
+               <div class="alert alert-success" role="alert"> {{ message }}</div>
+                {% endfor %}
+            
+        {% endif %}
+        <br><h3>ตะกร้าสินค้าของฉัน</h3> 
+        {% if not cartitem %} 
+        ไม่มีสินค้า
+        {% else %}
+        
+            <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%"><h5>สินค้า</h5></th>
+                                    <th style="width:10%"><h5>ราคา</h5></th>
+                                    <th style="width:8%"><h5>จำนวน</h5></th>
+                                    <th style="width:22%" class="text-center"><h5>รวมทั้งหมด</h5></th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody> 
+                            {% for i in cartitem %}
+                            
+                                <tr> 
+                                    <td data-th="สินค้า">
+                                        <div class="row">
+                                            <div class="col-sm-2 hidden-xs"><img src="{{i.product.image_url.url}}" alt="..." class="img-responsive"/></div>
+                                            <div class="col-sm-10">
+                                                <h5 class="nomargin" style="color:red">{{i.product.name}}</h5>
+                                                <h6>{{i.product.detail}}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th="ราคา">{{i.product.price}}</td>
+                                    <td data-th="จำนวน">
+                                    {% if i.quantity < i.product.instock %}
+                                    <a href="{% url 'cart:cart_remove' i.product.id %}" class="mr-2">
+                                        <span class="glyphicon glyphicon-minus-sign">
+                                    </a>
+                                    {{i.quantity}}
+                                    
+                                    <a href="{% url 'cart:addcartdetail' i.product.id %}" class="mr-2">
+                                        <span class="glyphicon glyphicon-plus-sign">
+                                     </a>
+                                     {% else %}
+                                     <a href="{% url 'cart:cart_remove' i.product.id %}" class="mr-2">
+                                        <span class="glyphicon glyphicon-minus-sign">                                         
+                                    </a>
+                                    {{i.quantity}}
+                                     {% endif %}
+                                    </td>
+                                    <td data-th="รวมทั้งหมด" class="text-center">{{ i.sub_total }}</td>
+                                    <td class="actions" data-th="">
+                                        
+                                         <a class="ml-2" href="{% url 'cart:full_remove' i.product.id %}" ><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>	
+                                         							
+                                    </td>
+                                </tr>
+                                
+                               {% endfor %}
+                            </tbody>
+                          
+                            <tfoot>
+                                <tr class="visible-xs">
+                                    <td class="text-center"><h5>รายการ</h5></td>
+                                    <td class="text-center"><strong>ทั้งหมด {{total}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="{% url 'product:shop' %}" class="btn btn-warning">เลือกชมสินค้าอย่างอื่น</a></td>
+                                    <td colspan="2" class="hidden-xs"></td>
+                                    <td class="hidden-xs text-center"><strong>{{total}}</strong></td>
+                                    <td><a href="{% url 'cart:checkout' %}" class="btn btn-primary ">สั่งซื้อสินค้า <i class="fa fa-caret-right"></i></a></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        {% endif %}
+        </div>
+        
+{% endblock %}

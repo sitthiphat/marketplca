@@ -1,0 +1,182 @@
+{% extends "master.html" %}
+
+{% block title %}addproduct{% endblock %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% block bg %}
+{% endblock bg %}
+ 
+
+{% if user.is_authenticated %}
+
+<div class="container"><center>
+
+        <h3>ข้อมูลสินค้า</h3>
+        <hr>
+  </center>
+  <div class="row">
+	
+          
+		
+    <div class="col-sm-6">
+       
+        <form action="" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputEmail1">ชื่อสินค้า</label>
+          {{formproduct.name}}
+          <label for="exampleInputEmail1">หมวดหมู่</label>
+          {{formproduct.category}}
+          <label for="exampleInputEmail1">ยี่ห้อ</label>
+          {{formproduct.brand}}
+          <label for="exampleInputEmail1">เพศ</label>
+          
+          {{formproduct.gender}}
+          <label for="exampleInputEmail1">สี</label>
+          {{formproduct.color}}
+          <label for="exampleInputEmail1">ขนาด</label>
+          {{formproduct.size}}
+         
+      </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+           <label for="exampleInputEmail1">รายละเอียด</label>
+          {{formproduct.detail}}
+
+          <label for="exampleInputEmail1">รูปภาพ</label>
+          <element class="checkout-form-list">
+          {{formproduct.image_url}}
+          <label for="exampleInputEmail1">จำนวน</label>
+          {{formproduct.instock}}
+          <label for="exampleInputEmail1">ราคา</label>
+          {{formproduct.price}}
+          </div>
+      <button type="submit" class="btn btn-primary" name="Submit"> บันทึกข้อมูล </button>
+        <a href="{% url 'user' %}"><button type="button" class="btn btn-danger">ยกเลิก</button>
+      </div>
+				
+        <br>
+        
+        
+        
+        </form>
+        
+    </div>
+  
+      
+   	<div class="col-sm-3"></div> 
+
+		
+
+  </div>
+</div>
+<br><hr>
+<!--<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6"> <br />
+      <h4 align="center"> ฟอร์มเพิ่มข้อมูลสินค้า </h4>
+      <hr />
+      <form  name="addproduct" action="addproduct" method="POST" enctype="multipart/form-data"  class="form-horizontal">
+        {% csrf_token %} 
+        <div class="form-group">
+          <div class="col-sm-12">
+            <h4> ชื่อสินค้า</h4>
+            <input type="text"  name="name" class="form-control" required placeholder="product name" />
+          </div>
+        </div>
+        <h4> หมวดหมู่</h4>
+        <div class="form-group">
+        
+            <div class="col-sm-12"required placeholder="product name">
+            
+               <select name="p_cat" class="form-control">
+               {% for i in productcats  %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                        {% endfor %}
+                      </select>
+            </div>
+          </div>
+          <h4>ยี่ห้อ</h4>
+        <div class="form-group">
+        
+            <div class="col-sm-12"required placeholder="product name">
+                <select name="p_brand" class="custom-select">
+                    
+                    <option>Nike</option>
+                    
+                    
+                  </select>
+            </div>
+          </div>
+        <h4>สี</h4>
+        <div class="form-group">
+        
+            <div class="col-sm-12"required placeholder="product name">
+                <select name="p_color" class="custom-select">
+                    
+                    <option>Nike</option>
+                    
+                    
+                  </select>
+            </div>
+          </div>
+          <p>เพศ</p>
+        <div class="form-group">
+        
+            <div class="col-sm-12"required placeholder="product name">
+                <select name="p_gender" class="custom-select">
+                    
+                    <option>Nike</option>
+                    
+                    
+                  </select>
+            </div>
+          </div>
+        <div class="form-group">
+          <div class="col-sm-12">
+            <p> รายละเอียดสินค้า </p>
+            <textarea name="description" class="form-control"  rows="3"  required placeholder="product detail"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-3">
+            <p> จำนวน </p>
+            <input type="number"  name="instock" class="form-control" required placeholder="จำนวน" />
+          </div>
+        <div class="form-group">
+          <div class="col-sm-3">
+            <p> ราคา </p>
+            <input type="number"  name="price" class="form-control" required placeholder="price" />
+          </div>
+          <!--<div class="col-sm-8 info">
+            <p> รูปภาพ </p>
+            <input type="file" name="p_img" class="form-control" />
+          </div>
+        </div> -->
+        
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+  
+    
+ {% else %}
+<div class="container">
+<h1> กรุณาเข้าสู่ระบบ</h1> <br>
+<a href="{% url 'signin' %}">เข้าสู่ระบบ</a>
+</div>
+{% endif %}
+
+       
+{% endblock %}
+{% block footer %}
+{% endblock footer %}

@@ -1,0 +1,28 @@
+
+
+
+ <a href="{% url 'addbuyer' user.buyer.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูล</button></a><br>
+
+<div class="cardtext-black bg-ligh mb-3" style="max-width: 40rem;">
+            
+            <div class="card-body">
+               
+               
+                
+               
+                <h5>
+                <div>ชื่อ: <strong>{{user.first_name}} {{user.last_name}}</strong></div><br>
+                <div>Email: <strong>{{user.email}} </strong></div><br> 
+                <div>เบอร์โทรศัพท์: <strong>0{{user.buyer.phone}}</strong></div><br> 
+                
+                <div></div>
+                </h5>
+                
+                
+            </div>
+            </div>
+    
+    
+
+
+

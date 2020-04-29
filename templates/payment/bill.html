@@ -1,0 +1,126 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}ใบเสร็จ
+{% endblock title %}
+{% block nav %}
+{% endblock nav %}
+{% block bg %}
+{% endblock bg %}
+{% block content %}
+<br>
+<br>
+<div class="container">
+  <div class="card">
+<div class="card-header">
+<div class="row mb-4">
+<div class="col-sm-6">
+หมายเลขคำสั่งซื้อ : 
+<strong>
+{{order.id}}
+</strong> 
+</div>
+<div class="col-sm-6">วันที่
+<strong>{{order.date|date:"d F, Y"}}</strong> 
+</div>
+</div>
+
+</div>
+<div class="card-body">
+<div class="row mb-4">
+<div class="col-sm-6">
+<h5 class="mb-3"></h5>
+<img src="{%static 'img/logo/logo5.png' %}" width="40%"alt="" />
+<h6>เว็บไซต์ StyleChic (เว็บไซต์ตลาดเสื้อกีฬามือสอง)</h6>
+<hr>
+
+
+</div>
+
+<div class="col-sm-6">
+<h5 class="mb-3">ข้อมูลลูกค้า</h5>
+<div>
+ชื่อ: 
+<strong>{{order.user.first_name}} </strong>
+ &nbsp;&nbsp;<strong>{{order.user.last_name}}</strong>
+</div>
+{% for i in address %}
+{% if i.user.id == order.user.id %}
+<div>ที่อยู่:<strong>{{i.number}}</strong></div>
+<div>ตำบล:<strong>{{i.tumbon}} </strong>&nbsp; อำเภอ:<strong>{{i.city}}</strong>&nbsp; จังหวัด:<strong> {{i.country}} {{i.zipcode}}</strong></div>
+<div>โทรศัพท์ :<strong>0{{order.user.buyer.phone}}</strong></div>
+<div></div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+</div>
+<hr>
+<div class="table-responsive-sm">
+<table class="table table-striped">
+<thead>
+<tr>
+<th>รหัสสินค้า</th>
+<th>สินค้า</th>
+
+
+<th class="right">ราคา</th>
+  <th class="center">จำนวน</th>
+<th class="right">รวม</th>
+
+</tr>
+</thead>
+<tbody>
+{% for i in orderitem %}
+<tr>
+<td class="left strong">{{i.product.id}}</td>
+<td class="left strong">{{i.product.name}}</td>
+
+
+<td class="right">{{i.product.price}}</td>
+  <td class="center">{{i.quantity}}</td>
+<td class="right">{{i.sub_total}}</td>
+
+</tr>
+{% endfor %}
+
+
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="col-lg-4 col-sm-5">
+
+</div>
+
+<div class="col-lg-4 col-sm-5 ml-auto">
+<table class="table table-clear">
+<tbody>
+<tr>
+<td class="left">
+<strong>รวมทั้งหมด</strong>
+</td>
+<td class="right">{{order.total}}</td>
+</tr>
+<tr>
+<td class="left">
+<strong>การชำระเงิน</strong>
+</td>
+<td class="right">ชำระเงินแล้ว</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<center><a href=""onClick="window.print()">พิมพ์</a><center>
+{% endblock  %}
+
+{% block footer %}
+{% endblock footer %}
