@@ -96,8 +96,7 @@ def addbuyer(request, id):
     else:
         return render(request, 'buyer/addbuyer.html')
 
-def addaddress(request):
-    
+def addaddress(request):    
     formaddress = Addressform()
     if request.method == 'POST':
         formaddress = Addressform(request.POST) 
@@ -154,7 +153,18 @@ def adduser(request,id):
     else:
         return render(request, 'seller/adduser.html')
     
-    
+def addbank(request):
+    form = Bankform()
+    if request.method == 'POST':
+        form = Bankform(request.POST) 
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user.seller
+            instance.save()
+            messages.success(request, 'เพิ่มข้อมูลธนาคารเรียบร้อยแล้ว')
+            return redirect('user')
+    context = {'form':form}
+    return render(request, 'seller/addbank.html', context)
     
     
     

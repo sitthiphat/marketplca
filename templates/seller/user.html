@@ -12,10 +12,10 @@
 
 <br>
 {% if user.is_authenticated %}
-<div class="container-fluid">
+
   <div class="container">
       
-      <div class="col-md-3 pr-md-0 bg-light">
+      <div class="col-sm-3 bg-light">
           <nav class="navbar navbar-expand-md navbar-light flex-row flex-md-column align-items-start px-1">
               
               <a class="navbar-toggler" href="#" data-toggle="collapse" data-target="#navbarToggle">
@@ -51,7 +51,7 @@
       </div><br>
 
       <!--  ความกว้าง ของ reponsive-->
-      <div class="col-9">
+      <div class="col-sm-9">
         <div class="tab-content" id="v-pills-tabContent">
   
   
@@ -109,7 +109,8 @@
           <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 
               <legend>บัญชีธนาคาร</legend>
-              
+               <a href="{% url 'addbank' %}"><button  class="btn btn-primary" name="Submit">เพิ่มข้อมูลธนาคาร</button></a>
+              <br><br>
                {% include 'seller/bank.html' %}
               
 
@@ -123,7 +124,7 @@
       </div>
     </div>  
 </div>
-</div>
+
 
 {% else %}
 <div class="container">

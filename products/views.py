@@ -31,7 +31,6 @@ def shop(request,cat_id=None):
 
 
 def addproduct(request):
-    
     formproduct = ProductFormproduct()
     if request.method == 'POST':
         formproduct = ProductFormproduct(request.POST, request.FILES) 

@@ -4,13 +4,25 @@
 {% block content %}
 <div class="container">
 <br>
-<br>
-ข้อมูลการชำระเงิน
+        <div class="row ">
+                <div class="col-sm-1">
+                
+                     <button  class="btn btn-primary"onclick="history.back()">กลับ</button>
+                </div>
+
+                <div class="col-sm-11">
+                    <div class="well well-sm bg-primary ">
+                    <center>ข้อมูลการชำระเงิน</center></div>
+                </div>
+        </div>
+
+
 <div class="row ">
+
     <div class="col-sm-4"> 
         
-        <div class="card text-black bg-white mb-3" >
-        <div class="card-header"><h4>หลักฐานการชำระเงิน</h4></div>
+        <div class="card text-black  mb-3">
+        <div class="card-header "><h5>หลักฐานการชำระเงิน</h5></div>
             {% if paycart.image_url %}<img class="card-img-top" style="height:400px;width:100%"src="{{paycart.image_url.url}}" alt="Card image">{% endif %}
             <div class="card-body">
             <h4 class="card-title">{{paycart.cartitem.product.name}}</h4>
@@ -23,8 +35,8 @@
     
         <div class="col-sm-4"> 
          
-            <div class="card text-black bg-light mb-3" style="max-width: 40rem;">
-            <div class="card-header"><h4>ข้อมูลผู้ซื้อ</h4></div>
+            <div class="card text-black bg-light mb-3" style="height:455px">
+            <div class="card-header "><h5>ข้อมูลผู้ซื้อ</h5></div>
             <div class="card-body">
                 <h5 class="card-title">ชื่อ: 
                 <strong>{{paycart.cartitem.order.user.first_name}} </strong>
@@ -36,6 +48,7 @@
                 <div>โทรศัพท์ :<strong>0{{paycart.cartitem.order.user.buyer.phone}}</strong></div>
                 <div></div>
                 
+                
                 {% endif %}
                 {% endfor %}
             </div>
@@ -45,7 +58,7 @@
 
         <div class="col-sm-4"> 
         <div class="card text-black bg-white mb-3" >
-            <div class="card-header"><h4>หลักฐานการจัดส่งสินค้า</h4></div>
+            <div class="card-header"><h5>หลักฐานการจัดส่งสินค้า</h5></div>
             <form action="{% url 'cart:sellerpayment' paycart.id %}"enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {% if paycart.simage_url %}<img class="card-img-top" style="height:400px;width:100%"src="{{paycart.simage_url.url}}" alt="Card image">
@@ -54,9 +67,12 @@
             <h4 class="card-title">ผู้ขายยังไม่ดำเนินการจัดส่งสินค้า</h4><hr>
             </div>
             อัพโหลดหลักฐานการจัดส่ง
-             <img class="img-responsive" id="blah" src="http://placehold.it/180" alt="your image" style="height:300px"/>
+             <img class="img-responsive" id="blah" src="http://placehold.it/180" alt="your image" style="height:250px"/>
+                {% if paycart.cartitem.product.p_seller.id == user.seller.id %}
             <input type='file' name="img" onchange="readURL(this);" /></center> 
             <button type="submit" class="btn btn-primary">บันทึก</button>
+                {% else %}
+                {% endif %}
             {% endif %}
             
             </form>

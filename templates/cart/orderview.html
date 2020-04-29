@@ -1,8 +1,6 @@
 {% extends 'master.html' %}
 {% load static %}
-{% block bg %}
 
-{% endblock bg %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'table/table.css' %}">
@@ -12,7 +10,7 @@
 <div class="container">
 <br>
 <br>
-<h3>ออเดอร์ที่ {{order.id}}</h3>
+<h4>คำสั่งซื้อที่ {{order.id}}</h4>
 
 
 <table >
@@ -40,7 +38,12 @@
                           <h5 style="color:green">ชำระแล้ว</h5>
                         </td>
                         <td data-column="ดูข้อมูล : ">
-                          <a href="" title="ดูข้อมูล" > <i class="fas fa-folder-open"></i></a>
+                         {% for pay in paycart %} 
+                            {% if pay.cartitem.id == i.id %}                        
+                            <a href="{% url 'cart:sellerpayment' pay.id %}" title="ข้อมูลการชำระเงิน" class="btn btn-primary btn-sm "> <i class="fas fa-folder-open"> ดูข้อมูล</i> </a>
+                          
+                          {% endif %}
+                        {% endfor %}
                         </td>
                       {% else %}
                         <td data-column=" สถานะ">

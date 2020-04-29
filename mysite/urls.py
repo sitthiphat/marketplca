@@ -13,4 +13,5 @@ urlpatterns = [
     path('addbuyer/<int:id>/', views.addbuyer, name="addbuyer"),
     path('addaddress', views.addaddress, name="addaddress"),
     path('editaddress/<int:id>/', views.editAddress, name="editaddress"),
+    path('addbank', views.addbank, name="addbank"),
 ]

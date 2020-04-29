@@ -1,0 +1,8 @@
+
+{% extends 'master.html' %}
+<form action="" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+    {{form}}     
+    <button type="submit" class="btn btn-primary" name="Submit"> บันทึกข้อมูล </button>          
+
+</form>

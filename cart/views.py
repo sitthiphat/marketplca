@@ -204,17 +204,16 @@ def payment(request,total=0):
     
               
 def orderview(request, order_id):
+    paycart = Paycart.objects.all()
     order= Order.objects.get(id=order_id)
     orderitem = OrderItem.objects.filter(order=order_id)
     for i in orderitem:
         if i.status == True :
             i.order.status = True
             i.order.save()
-        else :
-            i.order.status = True
-            i.order.save()
+        
          
-    context = {'orderitem':orderitem,'order':order}
+    context = {'orderitem':orderitem,'order':order,'paycart':paycart}
     return render(request, 'cart/orderview.html',context)
      
 def bill(request, order_id):

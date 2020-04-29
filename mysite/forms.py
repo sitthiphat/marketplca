@@ -7,3 +7,8 @@ class Addressform(ModelForm):
     class Meta:
         model = Address
         fields = ['number','country','city','tumbon','zipcode']
+        
+class Bankform(ModelForm):
+    class Meta:
+        model = SellerBank
+        fields = ['bank','namebank','number']
