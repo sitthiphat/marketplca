@@ -1,5 +1,6 @@
 
 
+{% if address.user.id == user.id %}
 {% for i in address %}
 {% if i.user.id == user.id %}
 <a href="{% url 'editaddress' i.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูลที่อยู่</button></a><br>
@@ -20,11 +21,11 @@
                
             </div>
             </div>
-            {% else %}
-<a href="{% url 'addaddress' %}"><button type="button" class="btn btn-primary">เพิ่มข้อมูลที่อยู่</button></a><br>
+          
                 {% endif %}
                 {% endfor %}
-    
-
+{% else %}
+<a href="{% url 'addaddress' %}"><button type="button" class="btn btn-primary">เพิ่มข้อมูลที่อยู่</button></a><br>
+{% endif %}
 
 
