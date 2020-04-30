@@ -212,11 +212,7 @@ def del_order(request, oi_id):
     return redirect('buyer')
     
     
-    
-        
-    
-
-    
+ 
               
 def orderview(request, order_id):
     paycart = Paycart.objects.all()
@@ -244,6 +240,8 @@ def sellerpayment(request, payment_id):
     if request.method =='POST':
         paycart.simage_url = request.FILES.get('img')
         paycart.save()
+        paycart.cartitem.ship =True
+        paycart.cartitem.save()
         messages.info(request,'ทำการจัดส่งเรียบร้อย')
         return redirect('user')
    

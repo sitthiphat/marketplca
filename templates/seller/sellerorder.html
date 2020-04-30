@@ -34,8 +34,8 @@
                   
                       <td data-column="รหัส : ">{{i.id}}</td>
                       <td data-column="ชื่อสินค้า : ">{{i.product.name}}</td>
-                     
-                      <td data-column="สถานะการชำระเงิน : "><h5 style="color:green">ชำระแล้ว </h5>
+
+                      <td data-column="สถานะการชำระเงิน : "><h5 style="color:green">ชำระแล้ว / {% if i.ship == True %}จัดส่งแล้ว{% else %}<h5 style="color:red">ยังไม่จัดส่ง</h5> {% endif %}</h5>
                       </td>
                     
                       <td data-column=" จำนวน">{{i.quantity}}</td>

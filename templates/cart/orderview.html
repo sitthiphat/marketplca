@@ -21,7 +21,10 @@
                       <th >จำนวน</th>
                       <th>รวม</th>
                       <th>การชำระเงิน</th>
+                      
                       <th>ดูรายละเอียด</th>
+                      <th>การจัดส่ง</th>
+
                     </tr>
                         
                 </thead>
@@ -45,15 +48,27 @@
                           {% endif %}
                         {% endfor %}
                         </td>
+                      <td>
+                      {% if i.ship == True %}
+                      <i class='fas fa-check-circle'style="font-size:150% ;color:green"></i>
+                      {% else %}
+                      <i class='fas fa-times-circle'style="font-size:150% ;color:red"></i>
+                       {% endif %}
+                      </td>
                       {% else %}
                         <td data-column=" สถานะ">
                           <a href="{% url 'cart:paymentcart' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm "> <i class="material-icons"></i>จ่ายเงิน </a>
                           
                         </td>
+                        
                         <td data-column="จัดการ : ">
                           <i class="fas fa-minus-circle"></i>
                         </td>
+                      
+                      
+                     
                       {% endif %}
+                      
                   </tr>{% endfor %}
                 </tbody>
             </table>
