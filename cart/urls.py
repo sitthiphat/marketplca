@@ -15,6 +15,7 @@ urlpatterns = [
     
     path('bill/<int:order_id>/', views.bill,name='bill'),
     path('payment/<int:payment_id>/', views.sellerpayment,name='sellerpayment'),
+    path('del_order/<int:oi_id>/', views.del_order,name='del_order'),
     
     
     ]

@@ -80,6 +80,7 @@
                          
                            <a href="{% url 'cart:orderview' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm ">ชำระเงิน <i class="material-icons"></i> </a>
                           <a href="{% url 'cart:bill' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm " disabled>พิมพ์ <i class="fa fa-print"></i> </a>
+                          <a href="{% url 'cart:del_order' i.id %}" title="ดูข้อมูล" onclick="return confirm('คุณต้องการจะลบใช่หรือไม่');" ><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button> </a>
                                
                       </td>
                       

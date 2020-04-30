@@ -72,7 +72,9 @@ def Logout(request):
 def buyer(request):
     address = Address.objects.filter(user=request.user).order_by('-id')
     order = Order.objects.filter(user=request.user).order_by('-id')
+   
     
+         
     context = {'address':address,'order_items':order}
     return render(request, 'buyer/buyer.html',context)
 

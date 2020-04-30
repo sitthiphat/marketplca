@@ -45,7 +45,7 @@
     <h4 style="color:red">สินค้าของทางร้าน<h4><br>
        <div class="row">
        {% for i in product %}
-
+            {% if i.status == True %}
           <div class="col-lg-2 col-md-6 mb-2">
             <div class="card h-100" >
             {% if i.image_url %}
@@ -64,7 +64,7 @@
           </div>
           
           
-
+          {% endif %}
         {% endfor %}</div>
         <!-- /.row -->
 

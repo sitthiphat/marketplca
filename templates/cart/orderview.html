@@ -41,13 +41,14 @@
                          {% for pay in paycart %} 
                             {% if pay.cartitem.id == i.id %}                        
                             <a href="{% url 'cart:sellerpayment' pay.id %}" title="ข้อมูลการชำระเงิน" class="btn btn-primary btn-sm "> <i class="fas fa-folder-open"> ดูข้อมูล</i> </a>
-                          
+
                           {% endif %}
                         {% endfor %}
                         </td>
                       {% else %}
                         <td data-column=" สถานะ">
                           <a href="{% url 'cart:paymentcart' i.id %}" title="ดูข้อมูล" class="btn btn-primary btn-sm "> <i class="material-icons"></i>จ่ายเงิน </a>
+                          
                         </td>
                         <td data-column="จัดการ : ">
                           <i class="fas fa-minus-circle"></i>

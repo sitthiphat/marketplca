@@ -1,8 +1,16 @@
 
 {% extends 'master.html' %}
+
+{% block content %}
+<div class="container">
 <form action="" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-    {{form}}     
+    <br>
+    <h5>ธนาคาร{{form.bank}}</h5>   
+    <h5>ชื่อบัญชี{{form.namebank}}</h5> 
+    <h5>เลขที่บัญชี{{form.number}}</h5> 
     <button type="submit" class="btn btn-primary" name="Submit"> บันทึกข้อมูล </button>          
 
 </form>
+</div>
+{% endblock content %}

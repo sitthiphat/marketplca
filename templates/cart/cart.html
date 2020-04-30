@@ -1,10 +1,9 @@
 {% extends "master.html" %}
 
-{% block title %}shoppingcart{% endblock %}
+{% block title %}ตะกร้าสินค้า{% endblock %}
 {% load static %}
 {% block content %}
-{% block bg %}
-{% endblock bg %}
+
 
 		
 	
@@ -76,7 +75,7 @@
                                     <td data-th="รวมทั้งหมด" class="text-center">{{ i.sub_total }}</td>
                                     <td class="actions" data-th="">
                                         
-                                         <a class="ml-2" href="{% url 'cart:full_remove' i.product.id %}" ><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>	
+                                         <a class="ml-2" href="{% url 'cart:full_remove' i.product.id %}"onclick="return confirm('คุณต้องการจะลบใช่หรือไม่');" ><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></a>	
                                          							
                                     </td>
                                 </tr>

@@ -175,7 +175,6 @@ def payment(request,total=0):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             
-            
     except ObjectDoesNotExist:
         pass
     if request.method == 'GET':
@@ -202,6 +201,22 @@ def payment(request,total=0):
         context = {'order': order}
         return redirect('buyer')
     
+    
+def del_order(request, oi_id):
+    
+    order_del = Order.objects.get(id=oi_id)
+    order_del.delete()
+    
+    messages.info(request,'ลบคำสั่งซื้อสินค้า')
+    context = {'orderitem_del': order_del}
+    return redirect('buyer')
+    
+    
+    
+        
+    
+
+    
               
 def orderview(request, order_id):
     paycart = Paycart.objects.all()
@@ -211,8 +226,7 @@ def orderview(request, order_id):
         if i.status == True :
             i.order.status = True
             i.order.save()
-        
-         
+    
     context = {'orderitem':orderitem,'order':order,'paycart':paycart}
     return render(request, 'cart/orderview.html',context)
      
