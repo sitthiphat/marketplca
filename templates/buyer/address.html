@@ -1,8 +1,8 @@
 
 
-{% if address.user.id == user.id %}
+{% if address %} 
 {% for i in address %}
-{% if i.user.id == user.id %}
+
 <a href="{% url 'editaddress' i.id %}"><button type="button" class="btn btn-warning">แก้ไขข้อมูลที่อยู่</button></a><br>
 <div class="cardtext-black bg-ligh mb-3" style="max-width: 40rem;">
             
@@ -15,17 +15,19 @@
                 <div>ตำบล: <strong>{{i.tumbon}} </strong></div><br> 
                 <div>อำเภอ: <strong>{{i.city}}</strong></div><br> 
                 <div>จังหวัด: <strong> {{i.country}} {{i.zipcode}}</strong></div><br>
-                <div>โทรศัพท์: <strong>0{{i.user.buyer.phone}}</strong></div>
+                
                 <div></div>
                 </h5>
                
             </div>
             </div>
           
-                {% endif %}
                 {% endfor %}
-{% else %}
-<a href="{% url 'addaddress' %}"><button type="button" class="btn btn-primary">เพิ่มข้อมูลที่อยู่</button></a><br>
+                {% else %}
+                <a href=""><button class="btn btn-primary">เพิ่มที่อยู่ของท่าน <i class='fas fa-house-user'></i></button></a>
+                <h5>กรุณาเพิ่มที่อยู่ก่อนทำการการสั่งซื้อสินค้า</h5>
 {% endif %}
+
+
 
 
