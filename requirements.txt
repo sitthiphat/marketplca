@@ -3,7 +3,7 @@ asgiref==3.2.3
 certifi==2019.11.28
 chardet==3.0.4
 distlib==0.3.0
-Django==3.0.4
+Django==3.1.13
 django-bootstrap3==9.1.0
 django-crispy-forms==1.9.0
 django-paypal==1.0.0
